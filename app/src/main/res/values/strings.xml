@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Movie Screening</string>
+    <string name="admin">Admin</string>
+    <string name="customer">Customer</string>
+    <string name="title_activity_admin_page">AdminPage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="select_movie">Select Movie</string>
+    <string name="please_select_the_number_of_tickets">Please select the number of tickets</string>
+    <string name="enter_the_number_of_tickets">Enter the number of tickets</string>
+    <string name="number_of_tickets">Number of tickets</string>
 </resources>
