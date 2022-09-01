@@ -11,27 +11,28 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
-
-        val CURRENT_PLAYING_MOVIES = mapOf(
-            ("The Shawshank Redemption" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("The Godfather" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("Pulp Fiction" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("Forrest Gump" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("Inception" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("The Matrix" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("Interstellar" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            ("Back to the Future" to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN)
-        )
-
+        private const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
         val CURRENT_SCREENING_MOVIES = arrayOf(
             "Pulp Fiction",
             "The Shawshank Redemption",
             "The Godfather",
             "Forrest Gump",
-            "Inception"
+            "Inception",
+            "The Matrix",
+            "Interstellar",
+            "Back to the Future"
         )
 
+        val movies_tickets_remaining = mapOf(
+            (CURRENT_SCREENING_MOVIES[0] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[1] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[2] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[3] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[4] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[5] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[6] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
+            (CURRENT_SCREENING_MOVIES[7] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN)
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

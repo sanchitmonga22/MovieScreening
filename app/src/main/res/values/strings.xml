@@ -16,4 +16,5 @@
     <string name="enter_the_number_of_tickets">Enter the number of tickets</string>
     <string name="number_of_tickets">Number of tickets</string>
     <string name="book_tickets">Book Tickets</string>
+    <string name="number_of_tickets_remaining">Number of tickets remaining:</string>
 </resources>
