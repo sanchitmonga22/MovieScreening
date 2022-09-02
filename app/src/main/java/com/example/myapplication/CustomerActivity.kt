@@ -45,7 +45,7 @@ class CustomerActivity : AppCompatActivity() {
             ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_item,
-                MainActivity.CURRENT_SCREENING_MOVIES
+                MainActivity.movie_to_screen_map.keys.toList()
             )
         binding.movieSelection.adapter = adapter
 
@@ -57,8 +57,9 @@ class CustomerActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
+                    val moviees = MainActivity.movies_tickets_remaining
                     binding.numberOfTicketsRemaining.text =
-                        MainActivity.movies_tickets_remaining[MainActivity.CURRENT_SCREENING_MOVIES[position]].toString()
+                        MainActivity.movies_tickets_remaining[MainActivity.movie_to_screen_map.keys.toList()[position]].toString()
                     // get the number of tickets remaining
                 }
 
@@ -115,6 +116,10 @@ class CustomerActivity : AppCompatActivity() {
             } else {
                 MainActivity.movies_tickets_remaining[selectedMovieName] =
                     getRemainingTickets()?.minus(numberOfTicketsSelectedByCustomer)!!
+                updateDB(selectedMovieName, numberOfTicketsSelectedByCustomer)
+                // update the source of truth
+
+
                 Toast.makeText(
                     this@CustomerActivity,
                     "Booking is Confirmed for $selectedMovieName:$numberOfTicketsSelectedByCustomer tickets!!",
@@ -126,6 +131,31 @@ class CustomerActivity : AppCompatActivity() {
             }
         }
         // confirm the booking
+    }
+
+    private fun updateDB(selectedMovieName: String, numberOfTicketsSelectedByCustomer: Int) {
+        val currentScreen = MainActivity.movie_to_screen_map[selectedMovieName]
+        if (MainActivity.movie_tickets_sold_per_screen[currentScreen]?.keys?.contains(
+                selectedMovieName
+            ) == true
+        ) {
+            val numberOfTicketsSold =
+                MainActivity.movie_tickets_sold_per_screen[currentScreen]?.get(selectedMovieName)
+                    ?.plus(numberOfTicketsSelectedByCustomer)
+            MainActivity.movie_tickets_sold_per_screen[currentScreen.toString()] =
+                mutableMapOf(selectedMovieName to numberOfTicketsSold!!)
+        } else {
+            val map = mutableMapOf<String, Int>()
+            MainActivity.movie_tickets_sold_per_screen[currentScreen.toString()]?.keys?.forEach { key ->
+                MainActivity.movie_tickets_sold_per_screen[currentScreen.toString()]?.get(key)
+                    ?.let {
+                        map[key] = it
+                    }
+            }
+            map[selectedMovieName] = numberOfTicketsSelectedByCustomer
+
+            MainActivity.movie_tickets_sold_per_screen[currentScreen.toString()] = map
+        }
     }
 
     private fun getRemainingTickets(): Int? =

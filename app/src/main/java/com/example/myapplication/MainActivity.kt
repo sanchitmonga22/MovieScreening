@@ -10,9 +10,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     companion object {
-
-         const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
+        const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
         const val IS_BOOKING_OPEN = "BookingOpen"
+
+        val AVAILABLE_SCREENS = arrayOf("Screen 1", "Screen 2", "Screen 3", "Screen 4", "Screen 5")
+
         val CURRENT_SCREENING_MOVIES = arrayOf(
             "Pulp Fiction",
             "The Shawshank Redemption",
@@ -24,16 +26,12 @@ class MainActivity : AppCompatActivity() {
             "Back to the Future"
         )
 
-        val movies_tickets_remaining = mutableMapOf(
-            (CURRENT_SCREENING_MOVIES[0] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[1] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[2] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[3] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[4] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[5] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[6] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
-            (CURRENT_SCREENING_MOVIES[7] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN)
-        )
+        val movie_to_screen_map = mutableMapOf<String, String>()
+        val movies_tickets_remaining = mutableMapOf<String, Int>()
+
+        // <Screen, <Movie, Tickets>>
+        val movie_tickets_sold_per_screen = mutableMapOf<String, MutableMap<String, Int>>()
+
         var isBookingOpen = false
     }
 
