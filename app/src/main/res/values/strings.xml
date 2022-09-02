@@ -35,4 +35,5 @@
     <string name="sales_for_screen_5">Sales for Screen 5</string>
     <string name="total_tickets_sold">TOTAL TICKETS SOLD:</string>
     <string name="end_the_day">End the Day!</string>
+    <string name="view_report">View Report</string>
 </resources>

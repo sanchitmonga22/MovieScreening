@@ -119,6 +119,14 @@ class AdminActivity : AppCompatActivity() {
         binding.screen5Selection.adapter = adapter5
     }
 
+    override fun onBackPressed() {
+        Toast.makeText(
+            this@AdminActivity,
+            "Please start the new booking before exiting the screen!",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
     private fun bookingCheck(): Boolean {
         val currentCount = MainActivity.movie_to_screen_map.keys.count()
         return if (currentCount != MainActivity.AVAILABLE_SCREENS.count()) {

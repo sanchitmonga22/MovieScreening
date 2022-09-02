@@ -116,6 +116,6 @@
         android:id="@+id/endBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/close_booking_for_the_day" />
+        android:text="@string/view_report" />
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityBookingsReportBinding
 
@@ -48,6 +49,11 @@ class BookingsReportActivity : AppCompatActivity() {
 
         binding.endTheDay.setOnClickListener {
             MainActivity.movie_tickets_sold_per_screen = mutableMapOf()
+            Toast.makeText(
+                this@BookingsReportActivity,
+                "Start the new booking for the new day!",
+                Toast.LENGTH_LONG
+            ).show()
             finish()
         }
     }
