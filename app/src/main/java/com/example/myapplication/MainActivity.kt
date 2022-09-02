@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        private const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
+         const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
         const val IS_BOOKING_OPEN = "BookingOpen"
         val CURRENT_SCREENING_MOVIES = arrayOf(
             "Pulp Fiction",
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             "Back to the Future"
         )
 
-        val movies_tickets_remaining = mapOf(
+        val movies_tickets_remaining = mutableMapOf(
             (CURRENT_SCREENING_MOVIES[0] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
             (CURRENT_SCREENING_MOVIES[1] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
             (CURRENT_SCREENING_MOVIES[2] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             val customerIntent = Intent(this@MainActivity, CustomerActivity::class.java)
             customerIntent.putExtra(IS_BOOKING_OPEN, isBookingOpen)
             startActivity(customerIntent)
-
         }
     }
 }

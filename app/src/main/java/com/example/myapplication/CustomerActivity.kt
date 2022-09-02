@@ -1,16 +1,18 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityCustomerBinding
-
 
 class CustomerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCustomerBinding
@@ -94,7 +96,15 @@ class CustomerActivity : AppCompatActivity() {
             val selectedMovieName = binding.movieSelection.selectedItem.toString()
             val numberOfTicketsSelectedByCustomer = binding.numberOfTickets.text.toString().toInt()
 
-            if (numberOfTicketsSelectedByCustomer <= 0 || numberOfTicketsSelectedByCustomer > getRemainingTickets()!!) {
+            if (getRemainingTickets()!! == 0) {
+                AlertDialog.Builder(this@CustomerActivity)
+                    .setTitle("Error while confirming the booking")
+                    .setMessage("The show has reached its limit ;(")
+                    .setPositiveButton("Ok") { dialog, _ ->
+                        binding.numberOfTickets.setText("")
+                        dialog.dismiss()
+                    }.show()
+            } else if (numberOfTicketsSelectedByCustomer <= 0 || numberOfTicketsSelectedByCustomer > getRemainingTickets()!!) {
                 AlertDialog.Builder(this@CustomerActivity)
                     .setTitle("Error while confirming the booking")
                     .setMessage("Please enter the valid number of tickets within the mentioned limit")
@@ -102,6 +112,17 @@ class CustomerActivity : AppCompatActivity() {
                         binding.numberOfTickets.setText("")
                         dialog.dismiss()
                     }.show()
+            } else {
+                MainActivity.movies_tickets_remaining[selectedMovieName] =
+                    getRemainingTickets()?.minus(numberOfTicketsSelectedByCustomer)!!
+                Toast.makeText(
+                    this@CustomerActivity,
+                    "Booking is Confirmed for $selectedMovieName:$numberOfTicketsSelectedByCustomer tickets!!",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                binding.numberOfTickets.setText("")
+                hideKeyboard(this@CustomerActivity)
             }
         }
         // confirm the booking
@@ -109,5 +130,18 @@ class CustomerActivity : AppCompatActivity() {
 
     private fun getRemainingTickets(): Int? =
         MainActivity.movies_tickets_remaining[binding.movieSelection.selectedItem.toString()]
+
+    // from https://stackoverflow.com/questions/1109022/how-to-close-hide-the-android-soft-keyboard-programmatically
+    private fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager =
+            activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        //Find the currently focused view, so we can grab the correct window token from it.
+        var view = activity.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
 }
