@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val movies_tickets_remaining = mutableMapOf<String, Int>()
 
         // <Screen, <Movie, Tickets>>
-        val movie_tickets_sold_per_screen = mutableMapOf<String, MutableMap<String, Int>>()
+        var movie_tickets_sold_per_screen = mutableMapOf<String, MutableMap<String, Int>>()
 
         var isBookingOpen = false
     }

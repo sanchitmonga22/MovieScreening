@@ -26,4 +26,13 @@
     <string name="screen_4">Screen 4</string>
     <string name="screen_5">Screen 5</string>
     <string name="please_select_which_movie_you_want_to_play_in_all_the_screens">Please select which movie you want to Play in all the Screens!</string>
+    <string name="reports_by_screens">Report by SCREENS</string>
+    <string name="report_by_movies">Report by MOVIES</string>
+    <string name="sales_for_screen_1">Sales for Screen 1</string>
+    <string name="sales_for_screen_2">Sales for Screen 2</string>
+    <string name="sales_for_screen_3">Sales for Screen 3</string>
+    <string name="sales_for_screen_4">Sales for Screen 4</string>
+    <string name="sales_for_screen_5">Sales for Screen 5</string>
+    <string name="total_tickets_sold">TOTAL TICKETS SOLD:</string>
+    <string name="end_the_day">End the Day!</string>
 </resources>
