@@ -7,4 +7,16 @@
     android:orientation="vertical"
     tools:context=".AdminActivity">
 
+    <Button
+        android:id="@+id/startBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_the_booking" />
+
+    <Button
+        android:id="@+id/endBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/close_booking_for_the_day" />
+
 </LinearLayout>

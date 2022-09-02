@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
 
         private const val INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN = 30
+        const val IS_BOOKING_OPEN = "BookingOpen"
         val CURRENT_SCREENING_MOVIES = arrayOf(
             "Pulp Fiction",
             "The Shawshank Redemption",
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             (CURRENT_SCREENING_MOVIES[6] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN),
             (CURRENT_SCREENING_MOVIES[7] to INITIAL_TOTAL_NUMBER_OF_TICKETS_PER_SCREEN)
         )
+        var isBookingOpen = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.customerButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, CustomerActivity::class.java))
+            val customerIntent = Intent(this@MainActivity, CustomerActivity::class.java)
+            customerIntent.putExtra(IS_BOOKING_OPEN, isBookingOpen)
+            startActivity(customerIntent)
+
         }
     }
 }

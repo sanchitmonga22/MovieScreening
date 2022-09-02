@@ -17,4 +17,7 @@
     <string name="number_of_tickets">Number of tickets</string>
     <string name="book_tickets">Book Tickets</string>
     <string name="number_of_tickets_remaining">Number of tickets remaining:</string>
+    <string name="the_booking_is_not_open_at_this_time">The Booking is not open at this time!, please check with the ADMIN</string>
+    <string name="start_the_booking">Start the Booking!</string>
+    <string name="close_booking_for_the_day">Close booking for the day!</string>
 </resources>

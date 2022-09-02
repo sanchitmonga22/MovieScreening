@@ -14,12 +14,28 @@ import com.example.myapplication.databinding.ActivityCustomerBinding
 
 class CustomerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCustomerBinding
+    private var isBookingOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomerBinding.inflate(layoutInflater)
+
+        isBookingOpen = intent.extras?.get(MainActivity.IS_BOOKING_OPEN) as Boolean
         initUI()
+        if (!isBookingOpen) {
+            hideUI()
+        }
         setContentView(binding.root)
+    }
+
+    private fun hideUI() {
+        binding.BookingOpen.visibility = View.GONE
+        binding.BookingClosed.visibility = View.VISIBLE
+    }
+
+    private fun showUI() {
+        binding.BookingOpen.visibility = View.VISIBLE
+        binding.BookingClosed.visibility = View.GONE
     }
 
     private fun initUI() {
@@ -83,8 +99,9 @@ class CustomerActivity : AppCompatActivity() {
                     .setTitle("Error while confirming the booking")
                     .setMessage("Please enter the valid number of tickets within the mentioned limit")
                     .setPositiveButton("Ok") { dialog, _ ->
+                        binding.numberOfTickets.setText("")
                         dialog.dismiss()
-                    }
+                    }.show()
             }
         }
         // confirm the booking
